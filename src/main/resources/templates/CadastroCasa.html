@@ -14,16 +14,26 @@
    			 Casa de show</a>
 	</nav>
 	<div class="container-fluid">
-	<form class="form-horizontal" method="POST" action="/casas">
+	<h1>Cadastro de casa</h1>
+	<a class="btn btn-link" href="/casas">Voltar para lista</a>
+	<form class="form-horizontal" method="POST" action="/casas" th:object="${casa}">
 		<div style="background: #67ca67; margin-top: 10px" class="alert alert-sucess" role="alert" th:if="${!#strings.isEmpty(mensagem)}">
 			<button type="button" class="close" data-dismiss="alert"></button>
 			<span th:text="${mensagem}">cadastrada com sucesso</span>
 		</div>
-		<div class="form-group">
+		<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+			<div th:each="detailedError : ${#fields.detailedErrors()}">
+				<span th:text="${detailedError.message}"></span>
+			</div>
+		</div> 
+		<input id="codigo" type="hidden" th:field="*{codigo}">
+		<div class="form-group" th:classappend="${#fields.hasErrors('nome')} ? has-error">
 		<label>Nome da casa:</label>
-		<input id="nome" name="nome" class="form-control" type="text" placeholder="Digite o nome da casa de show">
+		<input id="nome" th:field="*{nome}" class="form-control" type="text"  placeholder="Digite o nome da casa de show">
+		</div>
+		<div class="form-group">
 		<label>Local:</label>
-		<input id="local" name="local" class="form-control" type="text" placeholder="Digite o local">
+		<input id="local" th:field="*{local}" class="form-control" type="text" placeholder="Digite o local">
 		</div>
 		<button type="submit" class="btn btn-primary">Salvar</button>
 	</form>

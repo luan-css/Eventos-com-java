@@ -4,13 +4,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Casa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
+	@NotEmpty(message = "Nome obrigatório")
+	@Size(max = 60, message = "O nome nao pode ter mais de 60 letras")
 	private String nome;
+	@NotEmpty(message = "Local obrigatório")
 	private String local;
 	public Long getCodigo() {
 		return codigo;

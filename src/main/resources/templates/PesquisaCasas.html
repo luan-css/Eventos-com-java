@@ -12,7 +12,21 @@
    			<img src="https://1.bp.blogspot.com/-ttBUdCzkmv4/XcHbGA-WPGI/AAAAAAABa3E/bQP8FuQ62KMK2nstsLrsyzIrSmPBeoR6gCLcBGAsYHQ/s1600/4410.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
    			 Casa de show</a>
 	</nav>
-	<form class="form-horizontal">
+	<div class="container-fluid" style="margin-top:10px;">
+	<h1>Pesquisa titulo</h1>
+	<a class="btn btn-link" href="/casas/nova">Criar novo titulo</a>
+<form method="GET" class="form-horizontal" action="/titulos" th:object="${filtro}">
+	<div class="form-group">
+		<div class="col-lg-4">
+			<div class="input-group">
+			<input class="form-control" placeholder="Qual titulo você está procurando?"
+			autofocus="autofocus" nome="descricao">
+			<span class="input-group-btn"></span>
+			<button type="submit" class="btn btn-default">Pesquisar</button>
+			</div>
+		</div>		
+	</div>
+</form>
 		<div class="form-group">
 			<div class="col-lg-4">
 			</div>
@@ -22,16 +36,27 @@
 	    <thead>
 	        <tr>
 	            <th>#</th>
-	            <th>Descrição</th>
-	            <th>Data de vencimento</th>
+	            <th>Nome</th>
+	            <th>Local</th>
 	        	<th>Ações</th>
 	        </tr>
 	    </thead>
 	    <tbody>
+	    	<tr th:each="casa : ${casas}">
+	    		<td th:text="${casa.codigo}">1</td>
+	    		<td th:text="${casa.nome}"></td>
+	    		<td th:text="${casa.local}"></td>
+	    		<td>
+	    		   <a class="btn btn-link btn-xs" th:href="@{/casas/{codigo}(codigo=${casa.codigo})}">
+    			<span type="button" class="btn btn-primary">Editar</span>
+    			</a>
+	    		</td>
+	    	</tr>
 	    	<tr>
-	    		<td>Nenhuma casa foi encontrado</td>
+	    		<td th:if="${#lists.isEmpty(casas)}">Nenhuma casa foi encontrado</td>
 	    	</tr>
 	    </tbody>
 	</table>
+</div>
 </body>
 </html>
