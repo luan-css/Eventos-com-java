@@ -1,9 +1,13 @@
 package com.gft.casadeshow.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -18,6 +22,15 @@ public class Casa {
 	private String nome;
 	@NotEmpty(message = "Local obrigatório")
 	private String local;
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="casa")
+	private List<Evento> eventos;
+
+	public List<Evento> getEventos() {
+		return eventos;
+	}
+	public void setEventos(List<Evento> eventos) {
+		this.eventos = eventos;
+	}
 	public Long getCodigo() {
 		return codigo;
 	}

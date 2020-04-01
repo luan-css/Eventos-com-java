@@ -25,8 +25,10 @@ public class CasaController {
 	private Casas casas;
 	@RequestMapping("/nova")
 	public ModelAndView novo() {
+		List<Casa> ccasa = casas.findAll();
 		ModelAndView mv = new ModelAndView(CADASTRO_VIEW);
 		mv.addObject(new Casa());
+		mv.addObject("casas", ccasa);
 		return mv;
 	}
 	@RequestMapping(method = RequestMethod.POST)
@@ -53,4 +55,10 @@ public class CasaController {
 		mv.addObject("casas", todosCasas);
 		return mv;
 	}
+	
+	@RequestMapping(path = "/excluir/{codigo}")
+    public String excluir(@PathVariable("codigo") Casa casa) {
+        this.casas.delete(casa);
+        return "redirect:/casas";
+    }
 }
