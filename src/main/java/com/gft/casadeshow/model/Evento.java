@@ -13,6 +13,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
 
 @Entity
 public class Evento {
@@ -21,8 +25,11 @@ public class Evento {
 	private Long codigo;
 	private String nome;
 	private int capacidade;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
 	private Date Data;
+	@NotNull
+	@NumberFormat(pattern = "#,##0.00")
 	private BigDecimal valor;
 	@ManyToOne
 	@JoinColumn(nullable=false)

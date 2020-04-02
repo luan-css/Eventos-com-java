@@ -1,0 +1,71 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org/">
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap-datepicker.standalone.min.css"> 
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<title>Pesquisa Evento</title>
+</head>
+<body>
+	<nav style="background: black" class="navbar navbar-dark bg-dark" >
+  		<a class="navbar-brand" href="#">
+   			<img src="https://1.bp.blogspot.com/-ttBUdCzkmv4/XcHbGA-WPGI/AAAAAAABa3E/bQP8FuQ62KMK2nstsLrsyzIrSmPBeoR6gCLcBGAsYHQ/s1600/4410.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
+   			 Casa de show</a>
+	</nav>
+	<div class="container-fluid" style="margin-top:10px;">
+	<h1>Pesquisa evento</h1>
+	<a class="btn btn-link" href="/eventos/novo">Criar novo Evento</a>
+	<form method="GET" class="form-horizontal" action="/eventos">
+		<div class="form-group">
+			<div class="col-lg-4">
+				<div class="input-group">
+				<input class="form-control" placeholder="Qual evento você está procurando?"
+				autofocus="autofocus" nome="descricao">
+				<span class="input-group-btn"></span>
+				<button type="submit" class="btn btn-default">Pesquisar</button>
+				</div>
+			</div>		
+		</div>
+	</form>
+	<div class="form-group">
+		<div class="col-lg-4">
+		</div>
+	</div>
+	<table class="table table-bordered table-dark">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Nome</th>
+				<th>Data</th>
+				<th>Capacidade</th>
+				<th>Valor</th>
+				<th>Genero</th>
+				<th>Local</th>
+				<th>Ações</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="evento : ${eventos}">
+				<td class="text-center" th:text="${evento.codigo}">1</td>
+				<td th:text="${evento.nome}"></td>
+				<td th:text="${{evento.data}}"></td>
+				<td th:text="${evento.capacidade}"></td>
+				<td th:text="|R$ ${{evento.valor}}|"></td>
+				<td th:text="${evento.genero}"></td>
+				<td th:text="${evento.casa.nome}"></td>
+			</tr>
+			<tr>
+			<td colspan="8" th:if="${#lists.isEmpty(eventos)}">Nenhum evento foi encontrado</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	
+</div>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"
+		  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+		  crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -15,16 +15,16 @@
 	</nav>
 	<div class="container-fluid">
 	<h1>Cadastro de Eventos</h1>
-	<a class="btn btn-link" href="/casas">Voltar para lista</a>
-	<form class="form-horizontal" method="POST" action="/casas" >
-		<div style="background: #67ca67; margin-top: 10px" class="alert alert-sucess" role="alert" >
-			<button type="button" class="close" data-dismiss="alert"></button>
+	<a class="btn btn-link" href="/eventos">Voltar para lista</a>
+	<form class="form-horizontal" method="POST" action="/eventos" th:object="${evento}">
+		<div th:if="${!#strings.isEmpty(mensagem)}" style="background: #67ca67; margin-top: 10px" class="alert alert-sucess">
 			<span>cadastrada com sucesso</span>
 		</div>
-		<div class="alert alert-danger">
-			<div>
-				<span> </span>
-			</div>
+		<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+				<div th:each="detailedError : ${#fields.detailedErrors()}">
+				<span th:text="${detailedError.message}"></span>
+				</div>
+				
 		</div> 
 		<input id="codigo" type="hidden" >
 		<div class="form-group">
@@ -55,8 +55,7 @@
 	    <label for="status" class="col-sm-2 col-form-label col-form-label-lg">Genero:</label>
 	    <div class="col-sm-8">
 	     	<select class="form-control form-control-lg" name="genero" >
-	     	<option value="ROCK">Rock</option>
-	     	<option value="FUNK">Funk</option>
+	     	<option th:each="genero : ${todosGenero}" th:value="${genero}" th:text="${genero.genero}">Rock</option>
 	     	</select>
 	    </div>
 	  	</div>

@@ -2,7 +2,8 @@ package com.gft.casadeshow.model;
 
 public enum Genero {
 	ROCK("Rock"),
-	FUNK("Funk");
+	FUNK("Funk"),
+	AXÉ("Axé");
 	
 	private String genero;
 	
