@@ -4,46 +4,71 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="/css/bootstrap-datepicker.standalone.min.css"> 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css"
+	href="/css/bootstrap-datepicker.standalone.min.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
 </head>
 <body>
-	<nav style="background: black" class="navbar navbar-dark bg-dark" >
-  		<a class="navbar-brand" href="#">
-   			<img src="https://1.bp.blogspot.com/-ttBUdCzkmv4/XcHbGA-WPGI/AAAAAAABa3E/bQP8FuQ62KMK2nstsLrsyzIrSmPBeoR6gCLcBGAsYHQ/s1600/4410.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
-   			 Casa de show</a>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand">Navbar</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			<div class="navbar-nav">
+				<a class="nav-item nav-link active" href="#">Home</a> <a
+					class="nav-item nav-link active" href="/eventos">Evento</a> <a
+					class="nav-item nav-link active" href="/casas">Casa</a>
+			</div>
+		</div>
 	</nav>
 	<div class="container-fluid">
-	<h1>Cadastro de casa</h1>
-	<a class="btn btn-link" href="/casas">Voltar para lista</a>
-	<form class="form-horizontal" method="POST" action="/casas" th:object="${casa}">
-		<div style="background: #67ca67; margin-top: 10px" class="alert alert-sucess" role="alert" th:if="${!#strings.isEmpty(mensagem)}">
-			<button type="button" class="close" data-dismiss="alert"></button>
-			<span th:text="${mensagem}">cadastrada com sucesso</span>
-		</div>
-		<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
-			<div th:each="detailedError : ${#fields.detailedErrors()}">
-				<span th:text="${detailedError.message}"></span>
+		<h1>Cadastro de casa</h1>
+		<a class="btn btn-link" href="/casas">Voltar para lista</a>
+		<form class="form-horizontal" method="POST" action="/casas"
+			th:object="${casa}">
+			<div style="background: #67ca67; margin-top: 10px"
+				class="alert alert-sucess" role="alert"
+				th:if="${!#strings.isEmpty(mensagem)}">
+				<button type="button" class="close" data-dismiss="alert"></button>
+				<span th:text="${mensagem}">cadastrada com sucesso</span>
 			</div>
-		</div> 
-		<input id="codigo" type="hidden" th:field="*{codigo}">
-		<div class="form-group" th:classappend="${#fields.hasErrors('nome')} ? has-error">
-		<label>Nome da casa:</label>
-		<input id="nome" th:field="*{nome}" class="form-control" type="text"  placeholder="Digite o nome da casa de show">
-		</div>
-		<div class="form-group">
-		<label>Local:</label>
-		<input id="local" th:field="*{local}" class="form-control" type="text" placeholder="Digite o local">
-		</div>
-		<button type="submit" class="btn btn-primary">Salvar</button>
-	</form>
+			<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+				<div th:each="detailedError : ${#fields.detailedErrors()}">
+					<span th:text="${detailedError.message}"></span>
+				</div>
+			</div>
+			<input id="codigo" type="hidden" th:field="*{codigo}">
+			<div class="form-group"
+				th:classappend="${#fields.hasErrors('nome')} ? has-error">
+				<label>Nome da casa:</label> <input id="nome" th:field="*{nome}"
+					class="form-control" type="text"
+					placeholder="Digite o nome da casa de show">
+			</div>
+			<div class="form-group">
+				<label>Local:</label> <input id="local" th:field="*{local}"
+					class="form-control" type="text" placeholder="Digite o local">
+			</div>
+			<button type="submit" class="btn btn-primary">Salvar</button>
+		</form>
 	</div>
 
 
-<script src="https://code.jquery.com/jquery-3.4.1.js"
-		  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-		  crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"
+		integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+		crossorigin="anonymous"></script>
 </body>
 </html>

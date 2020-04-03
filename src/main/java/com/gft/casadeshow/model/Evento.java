@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,12 +24,15 @@ public class Evento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
+	@NotEmpty(message = "Nome do evento é obrigatório")
 	private String nome;
-	private int capacidade;
+	@NotNull(message = "Capacidade não pode ser nulo")
+	private Long capacidade;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
+	@NotNull(message = "Data é obrigatória")
 	private Date Data;
-	@NotNull
+	@NotNull(message = "Valor não pode ser nulo")
 	@NumberFormat(pattern = "#,##0.00")
 	private BigDecimal valor;
 	@ManyToOne
@@ -48,10 +52,10 @@ public class Evento {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public int getCapacidade() {
+	public Long getCapacidade() {
 		return capacidade;
 	}
-	public void setCapacidade(int capacidade) {
+	public void setCapacidade(Long capacidade) {
 		this.capacidade = capacidade;
 	}
 	public Date getData() {
