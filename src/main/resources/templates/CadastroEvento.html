@@ -10,6 +10,9 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css"
+	href="/css/bootstrap-datepicker.standalone.min.css">
+
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -47,12 +50,15 @@
 			<div class="form-group">
 				<label>Nome do evento:</label> <input th:field="*{nome}" id="nome"
 					class="form-control" type="text" name="nome"
-					placeholder="Digite o nome da casa de show">
+					placeholder="Digite o nome do evento">
 			</div>
 			<div class="form-group">
 				<label>Data:</label> <input th:field="*{data}" id="data"
 					class="form-control" type="text" name="data"
-					placeholder="Digite o local">
+					placeholder="Digite o local" data-provide="datepicker"
+					data-date-format="dd/mm/yyyy" data-date-language="pt-BR"
+					data-date-autoclose="true" data-date-today-highlight="true"
+					data-date-orientation="bottom">
 			</div>
 			<div class="form-group">
 				<label>Capacidade:</label> <input th:field="*{capacidade}"
@@ -62,14 +68,14 @@
 			<div class="form-group"
 				th:classappend="${#fields.hasErrors('valor')} ? has-error">
 				<label>Valor:</label> <input th:field="*{valor}"
-					class="form-control" type="text" name="valor"
-					placeholder="Digite o local">
+					class="form-control js-currency" type="text" name="valor"
+					placeholder="0,00">
 			</div>
 			<div class="form-group row">
 				<label for="status"
 					class="col-sm-2 col-form-label col-form-label-lg">Local:</label>
 				<div class="col-sm-8">
-					<select class="form-control form-control-lg" name="casa">
+					<select class="form-control form-control-lg" name="casa" th:field=*{casa}>
 						<option th:each="local : ${casas}" th:value="${local.codigo}"
 							th:text="${local.nome}"></option>
 					</select>
@@ -79,7 +85,7 @@
 				<label for="status"
 					class="col-sm-2 col-form-label col-form-label-lg">Genero:</label>
 				<div class="col-sm-8">
-					<select class="form-control form-control-lg" name="genero">
+					<select class="form-control form-control-lg" name="genero" th:field=*{genero}>
 						<option th:each="genero : ${todosGenero}" th:value="${genero}"
 							th:text="${genero.genero}">Rock</option>
 					</select>
@@ -101,5 +107,9 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
 		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
 		crossorigin="anonymous"></script>
+	<script src="/js/jquery.maskMoney.min.js"></script>
+	<script src="/js/bootstrap-datepicker.min.js"></script>
+	<script src="/js/bootstrap-datepicker.pt-BR.min.js"></script>
+	<script src="/js/eventos.js"></script>
 </body>
 </html>

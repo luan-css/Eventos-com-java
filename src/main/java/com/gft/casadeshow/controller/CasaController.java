@@ -49,8 +49,9 @@ public class CasaController {
 		return mv;
 	}
 	@RequestMapping
-	public ModelAndView pesquisar() {
+	public ModelAndView pesquisar(String descricao) {
 		List<Casa> todosCasas = casas.findAll();
+		
 		ModelAndView mv = new ModelAndView("PesquisaCasas");
 		mv.addObject("casas", todosCasas);
 		return mv;
