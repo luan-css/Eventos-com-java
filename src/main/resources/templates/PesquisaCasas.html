@@ -12,7 +12,7 @@
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand">Navbar</a>
+		<a class="navbar-brand" style="color: white">Shows</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -20,7 +20,7 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			<div class="navbar-nav">
-				<a class="nav-item nav-link active" href="#">Home</a> <a
+				<a class="nav-item nav-link active" href="/eventos/home">Home</a> <a
 					class="nav-item nav-link active" href="/eventos">Evento</a> <a
 					class="nav-item nav-link active" href="/casas">Casa</a>
 			</div>
@@ -29,20 +29,6 @@
 	<div class="container-fluid" style="margin-top: 10px;">
 		<h1>Pesquisa Casa</h1>
 		<a class="btn btn-link" href="/casas/nova">Criar novo titulo</a>
-		<form method="GET" class="form-horizontal" action="/titulos"
-			th:object="${filtro}">
-			<div class="form-group">
-				<div class="col-lg-4">
-					<div class="input-group">
-						<input class="form-control"
-							placeholder="Qual titulo você está procurando?"
-							autofocus="autofocus" name="descricao"> <span
-							class="input-group-btn"></span>
-						<button type="submit" class="btn btn-default">Pesquisar</button>
-					</div>
-				</div>
-			</div>
-		</form>
 		<div class="form-group">
 			<div class="col-lg-4"></div>
 		</div>

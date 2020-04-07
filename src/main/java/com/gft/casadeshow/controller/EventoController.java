@@ -82,4 +82,11 @@ public class EventoController {
         this.eventos.delete(evento);
         return "redirect:/eventos";
     }
+	@RequestMapping("/home")
+	public ModelAndView shows() {
+		List<Evento> todosEventos = eventos.findAll();
+		ModelAndView mv = new ModelAndView("PesquisaShow");
+		mv.addObject("eventos", todosEventos);
+		return mv;
+	}
 }
